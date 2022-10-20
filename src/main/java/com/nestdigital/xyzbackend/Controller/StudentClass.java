@@ -14,7 +14,6 @@ public class StudentClass {
     @Autowired
     private StudentDao dao;
 
-
     @CrossOrigin(origins ="*")
     @PostMapping(path = "/studentEntry",consumes = "application/json",produces = "application/json")
         public String studentEntry(@RequestBody StudentModel student){
@@ -35,5 +34,11 @@ public class StudentClass {
     public  String deletestudent(@RequestBody StudentModel student) {
         dao.deleteStudentById(student.getId());
         return "{status:'success'}";
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/searchstudent",consumes = "application/json",produces = "application/json")
+public List<StudentModel> searchstudent(@RequestBody StudentModel student){
+        return (List<StudentModel>) dao.searchstudent(student.getName());
     }
 }
