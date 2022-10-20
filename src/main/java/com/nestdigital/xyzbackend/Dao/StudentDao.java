@@ -13,6 +13,7 @@ public interface StudentDao extends CrudRepository<StudentModel,Integer> {
     @Query(value = "DELETE FROM `students` WHERE `id`=:id",nativeQuery = true)
     void deleteStudentById(Integer id);
 
-    @Query(value = "SELECT `id`, `admnnum`, `blood`, `collegename`, `department`, `dob`, `gaddress`, `gname`, `name`, `parentname`, `pemail`, `rollnum` FROM `students` WHERE `name`=:name",nativeQuery = true)
-    List<StudentModel> searchstudent(String name);
+    @Query(value = "SELECT `id`, `admnnum`, `blood`, `collegename`, `department`, `dob`, `gaddress`, `gname`, `name`, `parentname`, `pemail`, `rollnum` FROM `students` WHERE `admnnum`=:admnnum OR `name`=:name",nativeQuery = true)
+List<StudentModel> searchstudent(String name, Integer admnnum);
+
 }

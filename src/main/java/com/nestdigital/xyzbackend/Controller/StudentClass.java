@@ -39,6 +39,7 @@ public class StudentClass {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/searchstudent",consumes = "application/json",produces = "application/json")
 public List<StudentModel> searchstudent(@RequestBody StudentModel student){
-        return (List<StudentModel>) dao.searchstudent(student.getName());
+        return (List<StudentModel>) dao.searchstudent(student.getName(), student.getAdmnnum());
+
     }
 }
