@@ -3,6 +3,7 @@ package com.nestdigital.xyzbackend.Controller;
 import com.nestdigital.xyzbackend.Dao.StudentDao;
 import com.nestdigital.xyzbackend.Model.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,4 +28,12 @@ public class StudentClass {
         return (List<StudentModel>)dao.findAll();
     }
 
+
+    @CrossOrigin(origins = "*")
+    @Transactional
+    @PostMapping(path = "/deletestudent",consumes = "application/json",produces = "application/json")
+    public  String deletestudent(@RequestBody StudentModel student) {
+        dao.deleteStudentById(student.getId());
+        return "{status:'success'}";
+    }
 }
